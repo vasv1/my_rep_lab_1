@@ -19,14 +19,14 @@ with:
 python-version: '3.7' # Указываем версию Python 
 # Шаг 3: Устанавливаем зависимости (включая те, что нужны для тестов) - name: Install dependencies 
 run: | 
-python -m pip install --upgrade pip 
-pip install -r requirements.txt 
-pip install pytest # Устанавливаем pytest для запуска тестов 
+	python -m pip install --upgrade pip 
+	pip install -r requirements.txt 
+	pip install pytest # Устанавливаем pytest для запуска тестов 
 # Шаг 4: Запускаем SAST-сканер (Bandit) для анализа исходного кода - name: Run Bandit SAST Scan 
 run: | 
-pip install bandit 
-bandit -r . --severity-level high --confidence-level high -f json -o 
-bandit_results.json || true 
+	pip install bandit 
+	bandit -r . --severity-level high --confidence-level high -f json -o 
+	bandit_results.json || true 
 # Опции: 
 # -r .          - рекурсивно сканировать текущую директорию 
 # --severity-level high - показывать только уязвимости уровня HIGH 
@@ -39,18 +39,18 @@ bandit_results.json || true
 уязвимостях - name: Check Bandit Results 
 id: bandit-check 
 run: | 
-if [ -f bandit_results.json ]; then 
-# Ищем в отчете результаты с высоким уровнем серьезности (HIGH) 
-if jq -e '.results[] | select(.issue_confidence == "HIGH" and .issue_severity 
-== "HIGH")' bandit_results.json; then 
-echo "Bandit found critical vulnerabilities! Failing the pipeline." 
-exit 1 # Завершаем шаг с ошибкой, что заставит пайплайн "упасть" 
-else 
-echo "No critical vulnerabilities found by Bandit." 
-fi 
-else 
-echo "Bandit report not found. Assuming no issues." 
-fi 
+	if [ -f bandit_results.json ]; then 
+	# Ищем в отчете результаты с высоким уровнем серьезности (HIGH) 
+	if jq -e '.results[] | select(.issue_confidence == "HIGH" and .issue_severity 
+	== "HIGH")' bandit_results.json; then 
+	echo "Bandit found critical vulnerabilities! Failing the pipeline." 
+	exit 1 # Завершаем шаг с ошибкой, что заставит пайплайн "упасть" 
+	else 
+	echo "No critical vulnerabilities found by Bandit." 
+	fi 
+	else 
+	echo "Bandit report not found. Assuming no issues." 
+	fi 
 # Шаг 5: Запускаем сканер зависимостей Trivy - name: Run Trivy vulnerability scanner 
 uses: aquasecurity/trivy-action@master 
 with: 
@@ -63,4 +63,4 @@ severity: 'HIGH,CRITICAL' # Проверять только на критиче�
 уязвимости 
 # Шаг 6: Запускаем наши unit-тесты - name: Run Tests with pytest 
 run: | 
-python -m pytest tests/ -v 
+	python -m pytest tests/ -v 
