@@ -5,17 +5,18 @@ on:
    pull_request: 
       branches: [ main, master ]
 jobs: 
-   security-scan: 
-      name: Security Scan
-      runs-on: ubuntu-latest
-      steps:
-         - name: Checkout code
-		   uses: actions/checkout@v4
-		 - name: Set up Python
-           uses: actions/setup-python@v5 
-           with: 
-           python-version: '3.10' 
-		   - name: Install dependencies 
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+       - name: Checkout code
+         uses: actions/checkout@v4
+		
+       - name: Set up Python
+         uses: actions/setup-python@v5 
+         with: 
+            python-version: '3.10'
+      - name: Install dependencies
            run: |
 		      python -m pip install --upgrade pip
 			  pip install -r requirements.txt
@@ -25,8 +26,8 @@ jobs:
 		       pip install bandit 
 		       bandit -r . --severity-level high --confidence-level high -f json -o 
 		       bandit_results.json || true 
-id: bandit-check 
-run: | 
+               id: bandit-check 
+               run: | 
 		if [ -f bandit_results.json ]; then 
 		if jq -e '.results[] | select(.issue_confidence == "HIGH" and .issue_severity 
 		== "HIGH")' bandit_results.json; then 
