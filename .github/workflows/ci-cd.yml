@@ -27,13 +27,13 @@ jobs:
       bandit -r . --severity-level high --confidence-level high -f json -o bandit_results.json || true 
       id: bandit-check
        run: | 
-       if [ -f bandit_results.json ]; then 
+        if [ -f bandit_results.json ]; then 
         if jq -e '.results[] | select(.issue_confidence == "HIGH" and .issue_severity == "HIGH")' bandit_results.json; then
          echo "Bandit found critical vulnerabilities! Failing the pipeline."
          exit 1
         else
          echo "No critical vulnerabilities found by Bandit."
-        fi
-         else
-         echo "Bandit report not found. Assuming no issues."
-        fi
+         fi
+          else
+          echo "Bandit report not found. Assuming no issues."
+         fi
