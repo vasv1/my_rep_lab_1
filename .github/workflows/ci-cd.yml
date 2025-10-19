@@ -33,7 +33,3 @@ jobs:
          exit 1
         else
          echo "No critical vulnerabilities found by Bandit."
-         fi
-          else
-          echo "Bandit report not found. Assuming no issues."
-         fi
