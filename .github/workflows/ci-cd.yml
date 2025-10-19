@@ -56,7 +56,7 @@ jobs:
      exit-code: '1' # Пайплайн упадет, если Trivy найдет уязвимости
      ignore-unfixed: true # Игнорировать уязвимости, для которых нет фикса
      severity: 'HIGH,CRITICAL' # Проверять только на критические уязвимости
- # Шаг 6: Запускаем наши unit-тесты
- - name: Run Tests with pytest
-   run: |
-    python -m pytest tests/ -v
+   # Шаг 6: Запускаем наши unit-тесты
+   - name: Run Tests with pytest
+     run: |
+      python -m pytest tests/ -v
