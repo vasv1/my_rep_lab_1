@@ -25,29 +25,25 @@ jobs:
      run: |
       pip install bandit 
       bandit -r . --severity-level high --confidence-level high -f json -o bandit_results.json || true 
-       id: bandit-check
-         run: | 
+      id: bandit-check
+       run: | 
        if [ -f bandit_results.json ]; then 
-       if jq -e '.results[] | select(.issue_confidence == "HIGH" and .issue_severity 
-       == "HIGH")' bandit_results.json; then
-       echo "Bandit found critical vulnerabilities! Failing the pipeline." 
-       exit 1 
-       else 
-       echo "No critical vulnerabilities found by Bandit." 
-       fi 
-       else 
-       echo "Bandit report not found. Assuming no issues." 
-       fi 
-      uses: aquasecurity/trivy-action@master 
-      with: 
-      scan-type: 'fs' 
-      scan-ref: '.' 
-      format: 'table' 
-      exit-code: '1' 
-      ignore-unfixed: true 
-      severity: 'HIGH,CRITICAL' 
+       if jq -e '.results[] | select(.issue_confidence == "HIGH" and .issue_severity == "HIGH")' bandit_results.json; then
+        echo "Bandit found critical vulnerabilities! Failing the pipeline."
+        exit 1
+       else
+        echo "No critical vulnerabilities found by Bandit."
+       fi
+        else
+        echo "Bandit report not found. Assuming no issues."
+       fi
+      uses: aquasecurity/trivy-action@master
+      with:
+      scan-type: 'fs'
+      scan-ref: '.'
+      format: 'table'
+      exit-code: '1'
+      ignore-unfixed: true
+      severity: 'HIGH,CRITICAL'
       run: |
-      python -m pytest tests/ -v 
-
-
-
+      python -m pytest tests/ -v
