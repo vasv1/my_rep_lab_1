@@ -50,12 +50,12 @@ jobs:
    - name: Run Trivy vulnerability scanner
      uses: aquasecurity/trivy-action@master
      with:
-     scan-type: 'fs'
-     scan-ref: '.'
-     format: 'table'
-     exit-code: '1' # Пайплайн упадет, если Trivy найдет уязвимости
-     ignore-unfixed: true # Игнорировать уязвимости, для которых нет фикса
-     severity: 'HIGH,CRITICAL' # Проверять только на критические уязвимости
+      scan-type: 'fs'
+      scan-ref: '.'
+      format: 'table'
+      exit-code: '1' # Пайплайн упадет, если Trivy найдет уязвимости
+      ignore-unfixed: true # Игнорировать уязвимости, для которых нет фикса
+      severity: 'HIGH,CRITICAL' # Проверять только на критические уязвимости
    # Шаг 6: Запускаем наши unit-тесты
    - name: Run Tests with pytest
      run: |
