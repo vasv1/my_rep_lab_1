@@ -25,7 +25,8 @@ jobs:
      run: |
       pip install bandit 
       bandit -r . --severity-level high --confidence-level high -f json -o bandit_results.json || true 
-      id: bandit-check
-       run: | 
-        if [ -f bandit_results.json ]; then 
+   - name: Check Bandit Results 
+     id: bandit-check
+     run: | 
+      if [ -f bandit_results.json ]; then 
     
