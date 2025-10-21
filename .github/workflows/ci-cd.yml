@@ -30,6 +30,11 @@ jobs:
       pip install bandit
       #bandit -r . --severity-level high --confidence-level high -f json -o bandit_results.json || true
       bandit -r . -f json -o bandit_results.json || true
+   - name: Upload results  
+     uses: actions/upload-artifact@v4
+     with:
+      name: bandit-results
+      path: bandit-results.json
       # Опции:
       # -r . - рекурсивно сканировать текущую директорию
       # --severity-level high - показывать только уязвимости уровня HIGH
@@ -67,8 +72,4 @@ jobs:
      run: |
       python -m pytest tests/ -v
 
-   - name: Upload results  
-     uses: actions/upload-artifact@v4
-     with:
-      name: bandit-results
-      path: bandit-results.json
+
