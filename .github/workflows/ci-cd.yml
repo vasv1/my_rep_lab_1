@@ -38,7 +38,7 @@ jobs:
       # Мы обработаем результат на следующем шаге.
       # Шаг 4.1: Анализируем отчет Bandit и "валим" пайплайн при критических уязвимостях
    - name: Upload results  
-     uses: actions/upload-artifact@v3
+     uses: actions/upload-artifact@v4
      with:
       name: bandit-results
       path: bandit-results.json
