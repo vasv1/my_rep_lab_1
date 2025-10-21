@@ -40,7 +40,8 @@ jobs:
    - name: Upload results  
      uses: actions/upload-artifact@v3
      with:
-      name: bandit-results, path: bandit-results.json
+      name: bandit-results
+      path: bandit-results.json
    - name: Check Bandit Results
      id: bandit-check
      run: |
