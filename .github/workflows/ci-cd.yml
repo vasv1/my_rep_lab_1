@@ -11,7 +11,7 @@ jobs:
   name: Security Scan
   runs-on: ubuntu-latest # Запускаем на последнем Ubuntu-раннере от GitHub
   steps:
-   # Шаг 1: Получаем код из репозитория
+   # Шаг 1: Получаем код из репозитория 
    - name: Checkout code
      uses: actions/checkout@v4
    # Шаг 2: Настраиваем окружение Python
