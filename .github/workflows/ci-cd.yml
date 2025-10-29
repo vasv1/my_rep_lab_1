@@ -10,6 +10,9 @@ jobs:
  security-scan:
   name: Security Scan
   runs-on: ubuntu-latest # Запускаем на последнем Ubuntu-раннере от GitHub
+  defaults:
+  run:
+  working-directory: ./react
   steps:
    # Шаг 1: Получаем код из репозитория 
    - name: Checkout code
