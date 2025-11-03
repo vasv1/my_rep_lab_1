@@ -1,7 +1,4 @@
 ﻿# app.py
-#import sys
-#sys.path.append('c:/users/vit/appdata/local/programs/python/python37-32/Scripts')
-
 from flask import Flask, request
 app = Flask(__name__)
 @app.route('/')
