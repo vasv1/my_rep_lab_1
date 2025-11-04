@@ -72,7 +72,7 @@ jobs:
    - name: Run Tests with pytest
      run: |
       python -m pytest tests/ -v
-   # Шаг 7: Запуск flake8 (для Python)
+   # Шаг 7: Запуск flake8 (для Python) 
    - name: Set up flake8
      run: |
       pip install flake8
