@@ -76,6 +76,6 @@ jobs:
    # Шаг 7: Запуск flake8 (для Python) 
    - name: Run flake8
      run: |
-      flake8 --count || true
+      flake8 . || true
 
 
