@@ -77,7 +77,7 @@ jobs:
    - name: Run flake8
      run: |
       flake8 . || true
- build:  
+# build:  
 #  needs: Security Scan  
 #  steps:  
 #  - name: Build  
