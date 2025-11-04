@@ -77,5 +77,11 @@ jobs:
    - name: Run flake8
      run: |
       flake8 . || true
+ - build:  
+  - needs: Security Scan  
+  - steps:  
+  - uses: actions/checkout@v2  
+  - name: Build  
+  - run: npm run build  
 
 
