@@ -81,8 +81,17 @@ jobs:
   name: Build
   runs-on: ubuntu-latest
   steps:
-    - name: Build
-      uses: actions/checkout@v4
-      run: |
-      python app.py
+   - uses: actions/checkout@v4
+   - name: Set up Python
+     uses: actions/setup-python@v5
+      with:
+       python-version: '3.10'
+
+
+#     run: |
+#     pip install -r requirements.txt
+
+#   - name: Run python
+#     run: |
+#     python app.py
 
